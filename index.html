@@ -76,7 +76,7 @@ nav a:hover::after{width:100%}
 #scene{height:560vh;position:relative}
 #hero{position:sticky;top:0;height:100svh;min-height:0}
 #stage{display:none}
-#bike,#burst{position:absolute;inset:0;width:100%;height:100%}
+#bike,#burst{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}#bike{z-index:1;display:block}#burst{z-index:3}
 #burst{z-index:3;pointer-events:none}
 .hero-in{position:relative;z-index:2}
 #cap{position:absolute;z-index:4;left:0;right:0;bottom:calc(9% + env(safe-area-inset-bottom,0px));text-align:center;font-size:clamp(30px,7vw,72px);font-weight:900;letter-spacing:.08em;text-shadow:0 0 40px rgba(225,6,0,.7);pointer-events:none}
@@ -298,7 +298,7 @@ nav a{font-size:16px}
 <div id="lb" role="dialog" aria-modal="true" aria-label="Detalhe da moto"><button class="x" id="lx" aria-label="Fechar">✕</button><div class="box" id="lbox"></div></div>
 <a class="fab wal" href="#" aria-label="Falar no WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.1-1.3A10 10 0 1012 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.300 2.400 1.500.300.100.500.100.600-.1l.9-1.100c.2-.3.400-.2.600-.1l1.900.9c.3.1.500.2.500.3.100.200.100.800-.1 1.400z"/></svg></a>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js'"></script>
 <script>
 /* ====== CONFIGURAÇÃO ======
    WA: número com DDI+DDD. PHOTOS: cole aqui o endereço (URL) ou data-URI da foto real de cada moto;
@@ -451,7 +451,7 @@ if(window.THREE){
   parts.forEach((o,i)=>{const e=sm(0,1,(p-.04-i*.022)/.22);o.g.position.copy(o.f).multiplyScalar(1-e);o.g.rotation.set((1-e)*3,(1-e)*4,0);o.g.visible=p>.03});
   wheels.forEach(w=>w.rotation.z=-p*40);
   root.rotation.y=-.5+sm(.03,.88,p)*Math.PI*2;
-  const d=Math.max(5.4,3.4/(.65*cam.aspect)),sh=sm(.72,.92,p)*.05;
+  const d=Math.max(6.2,3.4/(.9*cam.aspect)),sh=sm(.72,.92,p)*.05;
   cam.position.set((Math.random()-.5)*sh,1.05+(Math.random()-.5)*sh,d-sm(.55,.9,p)*1.2);cam.lookAt(0,.4,0);
   const g=sm(.45,.9,p);engM.emissive.setRGB(g*.9,g*.05,0);rim.intensity=2.5+g*3;
   const rs=.5+.5*sm(0,.25,p);r1.scale.setScalar(rs);r2.scale.setScalar(rs);r1.rotation.z=t/900;r2.rotation.z=-t/1300;
